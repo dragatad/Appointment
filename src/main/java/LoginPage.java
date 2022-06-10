@@ -13,20 +13,8 @@ public class LoginPage extends BasePage {
         super(driver, driverWait);
     }
 
-    public By getMakeAnAppointmentBtn() {
-        return makeAnAppointmentBtn;
-    }
-
     public By getUsername() {
         return username;
-    }
-
-    public By getPassword() {
-        return password;
-    }
-
-    public By getLoginButton() {
-        return loginButton;
     }
 
     public void makeAnAppointment(){

@@ -16,7 +16,7 @@ public class AppointmentPage extends BasePage{
     private By visitDate = By.id("txt_visit_date");
     private By comment = By.id("txt_comment");
     private By submit = By.id("btn-book-appointment");
-    private By appointmentElements = By.id("appointment");
+    private By appointmentElements = By.xpath("//*[@id=\"appointment\"]/div/div/form/div");
 
     public AppointmentPage(WebDriver driver, WebDriverWait driverWait) {
         super(driver, driverWait);
@@ -26,46 +26,19 @@ public class AppointmentPage extends BasePage{
         return facilitySelect;
     }
 
-    public By getHospitalReadmission() {
-        return hospitalReadmission;
+    public List<WebElement> getAppointmentElements(){
+        return getDriver().findElements(appointmentElements);
     }
 
-    public By getHealthCareProgram1() {
-        return healthCareProgram1;
-    }
-
-    public By getHealthCareProgram2() {
-        return healthCareProgram2;
-    }
-
-    public By getHealthCareProgram3() {
-        return healthCareProgram3;
-    }
-
-    public By getVisitDate() {
-        return visitDate;
-    }
-
-    public By getComment() {
-        return comment;
-    }
-
-    public By getSubmit() {
-        return submit;
-    }
-
-    public By getAppointmentElements() {
-        return appointmentElements;
-    }
 
     public boolean isFormPresented(){
         //return getDriver().findElement(submit).isDisplayed();
-        List<WebElement> elements = getDriver().findElements(By.id("appointment"));
-        if(elements.size() == 0){
-            return false;
-        }
-        return true;
+        List<WebElement> elements = getDriver().findElements(By.xpath("//*[@id=\"appointment\"]/div/div/form/div"));
+        int size = elements.size(); //6 elemenata u formi
+        return size == 6;
     }
+
+
 
     public void setAppointment(){
         getDriver().findElement(facilitySelect).sendKeys("Tokyo CURA Healthcare Center");
@@ -74,16 +47,7 @@ public class AppointmentPage extends BasePage{
         getDriver().findElement(visitDate).sendKeys("21/09/2022");
         getDriver().findElement(comment).sendKeys("No comment");
         getDriver().findElement(submit).click();
-    }
-
-    public void setAppointmentClick(){
-        getDriver().findElement(submit).click();
-    }
-
-    public String appointmentDetails(){
-        getDriver().navigate().back();
-        List<String>elementsList = new ArrayList<>();
-        return String.valueOf(elementsList.add(getDriver().findElement(appointmentElements).getText()));
+        //getFacilitySelect().click();
     }
 
 

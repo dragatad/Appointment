@@ -11,37 +11,31 @@ public class SummaryPage extends AppointmentPage {
     private By readmission = By.id("hospital_readmission");
     private By program = By.id("program");
     private By date = By.id("visit_date");
-    private By comment = By.id("comment");
+    private By commentSummary = By.id("comment");
 
     public SummaryPage(WebDriver driver, WebDriverWait driverWait) {
         super(driver, driverWait);
     }
 
-    public By getFacility() {
-        return facility;
+    public WebElement getFacility() {
+        return getDriver().findElement(facility);
     }
 
-    public By getReadmission() {
-        return readmission;
+    public WebElement getReadmission() {
+        return getDriver().findElement(readmission);
     }
 
-    public By getProgram() {
-        return program;
+    public WebElement getProgram() {
+        return getDriver().findElement(program);
     }
 
-    public By getDate() {
-        return date;
+    public WebElement getDate() {
+        return getDriver().findElement(date);
     }
 
-    @Override
-    public By getComment() {
-        return comment;
+    public By getCommentSummary() {
+        return commentSummary;
     }
 
-    public String appointmentSummary(){
-        WebElement summaryDetails = getDriver().findElement(By.id("summary"));
-        List<String> elementsList = new ArrayList<>();
-        return String.valueOf(elementsList.add(summaryDetails.getText()));
-    }
 
 }
